@@ -38,28 +38,6 @@
     if (e.key === 'Escape' && !lb.hidden) closeBox();
   });
 
-  /* 录音文件缺失时切换为占位提示 */
-  var audio = document.getElementById('oralAudio');
-  var missing = document.getElementById('audioMissing');
-
-  function showMissing() {
-    if (!missing.hidden) return;
-    audio.hidden = true;
-    missing.hidden = false;
-  }
-
-  audio.addEventListener('error', showMissing, true);
-  audio.querySelectorAll('source').forEach(function (s) {
-    s.addEventListener('error', function () {
-      // 所有备选来源都失败时才提示
-      if (audio.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) showMissing();
-    });
-  });
-  // 兜底：加载后仍无可用时长，视为文件缺失
-  setTimeout(function () {
-    if (audio.readyState === 0 && audio.networkState !== 2) showMissing();
-  }, 2500);
-
   /* 区块滚动入场 */
   var secs = document.querySelectorAll('.sec');
   if ('IntersectionObserver' in window) {

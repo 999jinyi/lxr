@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>打印实体展牌 · 飞人牌缝纫机</title>
+<style>
+:root{
+  --paper:#f6f1e6; --ink:#241f1b; --gold:#a4802a; --dark:#1c1815;
+  --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"STSong",serif;
+  --sans:-apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:#ece4d4;color:var(--ink);font-family:var(--sans);
+}
+.toolbar{
+  position:sticky;top:0;z-index:2;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+  padding:14px 18px;background:#fffdf8;border-bottom:1px solid #ddd2bd;
+}
+.toolbar p{margin:0;font-size:13.5px;color:#5c5348;line-height:1.6}
+.toolbar a{color:var(--gold)}
+.btn{
+  appearance:none;border:0;cursor:pointer;
+  background:var(--dark);color:#f3ead8;
+  font-size:14px;letter-spacing:.1em;padding:10px 18px;border-radius:2px;
+}
+.sheet{
+  width:min(420px,92vw);margin:36px auto 64px;
+}
+.plate{
+  background:var(--dark);color:#f3ead8;
+  padding:28px 24px 32px;text-align:center;
+  box-shadow:0 18px 40px -24px rgba(0,0,0,.7);
+  position:relative;
+}
+.plate::after{
+  content:"";position:absolute;left:18px;right:18px;bottom:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.kicker{
+  margin:0 0 16px;font-size:11px;letter-spacing:.28em;color:#c9ab63;
+}
+.title{
+  font-family:var(--serif);margin:0;
+  font-size:30px;font-weight:600;line-height:1.2;letter-spacing:.04em;
+}
+.title span{display:block;font-size:.78em;margin-top:4px}
+.sub{margin:12px 0 0;font-size:11px;letter-spacing:.18em;color:#a09484}
+.qr-wrap{
+  margin:26px auto 16px;width:62%;
+  background:#fff;padding:10px;
+}
+.qr-wrap img{display:block;width:100%;height:auto}
+.cta{
+  margin:0;font-size:13.5px;letter-spacing:.12em;color:#d8c7a2;
+}
+.url{
+  margin:8px 0 0;font-size:11px;color:#7d7367;letter-spacing:.02em;
+  word-break:break-all;
+}
+.tags{
+  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  gap:7px;padding:0;margin:22px 0 0;
+}
+.tags li{
+  font-size:11.5px;letter-spacing:.06em;
+  border:1px solid rgba(201,171,99,.45);
+  color:#d8c7a2;border-radius:999px;padding:3px 11px;
+}
+.blurb{
+  margin:22px 18px 0;font-family:var(--serif);
+  font-size:13.5px;line-height:1.9;color:#cfc3af;
+}
+
+@media print{
+  .toolbar{display:none}
+  body{background:#fff}
+  .sheet{width:90mm;margin:12mm auto}
+  .plate{box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <p>这是可打印的实体展牌。扫码进入：<a href="https://lxr-phd.pages.dev/">lxr-phd.pages.dev</a></p>
+    <button class="btn" type="button" onclick="window.print()">打印展牌</button>
+  </div>
+
+  <div class="sheet">
+    <article class="plate">
+      <p class="kicker">家庭记忆数字展牌 · No.001</p>
+      <h1 class="title">飞人牌<span>家用缝纫机</span></h1>
+      <p class="sub">FLYING MAN · 中华人民共和国制造</p>
+      <div class="qr-wrap">
+        <img src="assets/img/qrcode.png" alt="扫码打开数字展牌 https://lxr-phd.pages.dev/">
+      </div>
+      <p class="cta">扫码看前世今生 · 听外婆讲述</p>
+      <p class="url">https://lxr-phd.pages.dev/</p>
+      <ul class="tags">
+        <li>1988 年入户</li>
+        <li>已使用 37 年</li>
+        <li>现存于外婆家</li>
+      </ul>
+      <p class="blurb">一台缝纫机能用三十七年，靠的不是质量，<br>是有人一直记得它怎么用。</p>
+    </article>
+  </div>
+</body>
+</html>
